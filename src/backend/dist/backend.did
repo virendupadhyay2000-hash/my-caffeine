@@ -1,0 +1,238 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type VillageProfile = 
+ record {
+   areaSqKm: float64;
+   facilities: vec text;
+   households: nat;
+   name: text;
+   population: nat;
+   updatedAt: Timestamp;
+ };
+type VillageDashboard = 
+ record {
+   completedCount: nat;
+   developmentCount: nat;
+   ongoingCount: nat;
+   profile: opt VillageProfile;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type StatusChange = 
+ record {
+   changedAt: Timestamp;
+   fromStatus: ProblemStatus;
+   toStatus: ProblemStatus;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ResponseId = nat;
+type ProblemStatus = 
+ variant {
+   inProgress;
+   new;
+   resolved;
+ };
+type ProblemStats = 
+ record {
+   byCategory: vec record {
+                     ProblemCategory;
+                     nat;
+                   };
+   open: nat;
+   resolved: nat;
+   total: nat;
+ };
+type ProblemInput = 
+ record {
+   category: ProblemCategory;
+   description: text;
+   location: opt GeoLocation;
+   photo: opt ExternalBlob;
+   reporterContact: opt text;
+   reporterName: opt text;
+   title: text;
+ };
+type ProblemId = nat;
+type ProblemFilter = 
+ record {
+   category: opt ProblemCategory;
+   search: opt text;
+   status: opt ProblemStatus;
+ };
+type ProblemDetail = 
+ record {
+   problem: Problem;
+   responses: vec OfficialResponse;
+   statusHistory: vec StatusChange;
+ };
+type ProblemCategory = 
+ variant {
+   education;
+   electricity;
+   health;
+   other;
+   road;
+   sanitation;
+   water;
+ };
+type Problem = 
+ record {
+   category: ProblemCategory;
+   createdAt: Timestamp;
+   description: text;
+   id: ProblemId;
+   location: opt GeoLocation;
+   photo: opt ExternalBlob;
+   reporterContact: opt text;
+   reporterName: opt text;
+   status: ProblemStatus;
+   title: text;
+   updatedAt: Timestamp;
+   upvotes: nat;
+ };
+type OfficialResponse = 
+ record {
+   createdAt: Timestamp;
+   id: ResponseId;
+   message: text;
+   problemId: ProblemId;
+ };
+type GeoLocation = 
+ record {
+   latitude: float64;
+   longitude: float64;
+ };
+type ExternalBlob = blob;
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DevelopmentUpdate = 
+ record {
+   budget: nat;
+   createdAt: Timestamp;
+   description: text;
+   id: DevelopmentId;
+   photo: opt ExternalBlob;
+   status: DevelopmentStatus;
+   title: text;
+   updatedAt: Timestamp;
+ };
+type DevelopmentStatus = 
+ variant {
+   completed;
+   ongoing;
+   planned;
+ };
+type DevelopmentInput = 
+ record {
+   budget: nat;
+   description: text;
+   photo: opt ExternalBlob;
+   status: DevelopmentStatus;
+   title: text;
+ };
+type DevelopmentId = nat;
+type ContactSettings = 
+ record {
+   email: text;
+   phone: text;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addOfficialResponse: (id: ProblemId, message: text) ->
+   (opt OfficialResponse);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createDevelopmentUpdate: (input: DevelopmentInput) -> (DevelopmentUpdate);
+  createProblem: (input: ProblemInput) -> (Problem);
+  deleteDevelopmentUpdate: (id: DevelopmentId) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getContactSettings: () -> (ContactSettings) query;
+  getDevelopmentUpdate: (id: DevelopmentId) -> (opt DevelopmentUpdate) query;
+  getProblem: (id: ProblemId) -> (opt Problem) query;
+  getProblemDetail: (id: ProblemId) -> (opt ProblemDetail) query;
+  getProblemStats: () -> (ProblemStats) query;
+  getVillageDashboard: () -> (VillageDashboard) query;
+  getVillageProfile: () -> (opt VillageProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  listDevelopmentUpdates: () -> (vec DevelopmentUpdate) query;
+  listProblems: (filter: ProblemFilter) -> (vec Problem) query;
+  schema: () -> (text) query;
+  setVillageProfile: (input: VillageProfile) -> (VillageProfile);
+  updateContactSettings: (email: text, phone: text) -> (ContactSettings);
+  updateDevelopmentUpdate: (id: DevelopmentId, input: DevelopmentInput) ->
+   (opt DevelopmentUpdate);
+  updateProblemStatus: (id: ProblemId, status: ProblemStatus) ->
+   (opt Problem);
+  upvoteProblem: (id: ProblemId) -> (opt nat);
+}

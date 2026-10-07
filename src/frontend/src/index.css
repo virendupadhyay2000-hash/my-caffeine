@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Fonts — Fraunces (display serif) + General Sans (body)              */
+/* Devanagari: no bundled Devanagari .woff2 ships with the skill, so   */
+/* Hindi text falls back through the system stack declared below.      */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Fraunces", "Noto Sans Devanagari", "Noto Serif Devanagari",
+      Georgia, serif;
+    --font-body: "General Sans", "Noto Sans Devanagari", "Nirmala UI", "Mangal",
+      system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --radius: 0.75rem;
+
+    /* माटी और हरियाली — warm parchment base, forest-green primary */
+    --background: 0.975 0.012 85; /* warm parchment */
+    --foreground: 0.22 0.02 60; /* deep umber ink */
+
+    --card: 0.995 0.006 85; /* near-white cream */
+    --card-foreground: 0.22 0.02 60;
+    --popover: 0.995 0.006 85;
+    --popover-foreground: 0.22 0.02 60;
+
+    --primary: 0.42 0.11 155; /* deep forest green */
+    --primary-foreground: 0.97 0.012 85;
+
+    --secondary: 0.93 0.018 85; /* sand */
+    --secondary-foreground: 0.3 0.025 60;
+    --muted: 0.93 0.018 85;
+    --muted-foreground: 0.5 0.02 60;
+
+    --accent: 0.58 0.13 40; /* terracotta / clay */
+    --accent-foreground: 0.98 0.008 60;
+
+    --destructive: 0.52 0.19 28;
+    --destructive-foreground: 0.98 0.008 60;
+
+    --success: 0.55 0.14 152; /* resolved green */
+    --success-foreground: 0.98 0.008 152;
+    --warning: 0.72 0.14 78; /* in-progress ochre */
+    --warning-foreground: 0.25 0.04 78;
+    --info: 0.5 0.09 240;
+    --info-foreground: 0.98 0.008 240;
+
+    --border: 0.89 0.02 80;
+    --input: 0.89 0.02 80;
+    --ring: 0.42 0.11 155;
+
+    --chart-1: 0.42 0.11 155; /* forest green */
+    --chart-2: 0.58 0.13 40; /* terracotta */
+    --chart-3: 0.72 0.14 78; /* ochre */
+    --chart-4: 0.55 0.09 200; /* teal water */
+    --chart-5: 0.66 0.1 130; /* leaf */
+
+    --sidebar: 0.35 0.07 155; /* deep green rail */
+    --sidebar-foreground: 0.95 0.012 85;
+    --sidebar-primary: 0.72 0.14 78;
+    --sidebar-primary-foreground: 0.2 0.03 78;
+    --sidebar-accent: 0.42 0.09 155;
+    --sidebar-accent-foreground: 0.97 0.012 85;
+    --sidebar-border: 0.42 0.06 155;
+    --sidebar-ring: 0.72 0.14 78;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.42 0.11 155),
+      oklch(0.5 0.12 145)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.975 0.012 85),
+      oklch(0.955 0.016 85)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.16 0.015 150; /* forest ink */
+    --foreground: 0.94 0.01 85;
+    --card: 0.2 0.018 150;
+    --card-foreground: 0.94 0.01 85;
+    --popover: 0.2 0.018 150;
+    --popover-foreground: 0.94 0.01 85;
+
+    --primary: 0.68 0.14 152; /* botanical green */
+    --primary-foreground: 0.16 0.015 150;
+
+    --secondary: 0.24 0.02 150;
+    --secondary-foreground: 0.86 0.01 85;
+    --muted: 0.24 0.02 150;
+    --muted-foreground: 0.62 0.015 85;
+
+    --accent: 0.68 0.13 45; /* warm clay */
+    --accent-foreground: 0.18 0.02 45;
+
+    --destructive: 0.62 0.18 28;
+    --destructive-foreground: 0.16 0.015 28;
+
+    --success: 0.68 0.14 152;
+    --success-foreground: 0.16 0.015 152;
+    --warning: 0.78 0.14 80;
+    --warning-foreground: 0.2 0.03 80;
+    --info: 0.68 0.1 240;
+    --info-foreground: 0.16 0.015 240;
+
+    --border: 0.28 0.02 150;
+    --input: 0.28 0.02 150;
+    --ring: 0.68 0.14 152;
+
+    --chart-1: 0.68 0.14 152;
+    --chart-2: 0.68 0.13 45;
+    --chart-3: 0.78 0.14 80;
+    --chart-4: 0.68 0.1 200;
+    --chart-5: 0.74 0.12 130;
+
+    --sidebar: 0.14 0.015 150;
+    --sidebar-foreground: 0.94 0.01 85;
+    --sidebar-primary: 0.78 0.14 80;
+    --sidebar-primary-foreground: 0.16 0.015 80;
+    --sidebar-accent: 0.24 0.02 150;
+    --sidebar-accent-foreground: 0.86 0.01 85;
+    --sidebar-border: 0.28 0.02 150;
+    --sidebar-ring: 0.78 0.14 80;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.68 0.14 152),
+      oklch(0.6 0.13 145)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.16 0.015 150),
+      oklch(0.19 0.018 150)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .transition-smooth {
+      transition: none;
+    }
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,277 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type ContactSettings__1013381992 = {email : Text; phone : Text};
+type ContactSettings__186993079 = {email : Text; phone : Text};
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type DevelopmentId__173362474 = DevelopmentId__749281794;
+type DevelopmentId__749281794 = Nat;
+type DevelopmentStatus__11287513 = {#completed; #ongoing; #planned};
+type DevelopmentStatus__799853551 = {#completed; #ongoing; #planned};
+type DevelopmentStatus__829611004 = {#completed; #ongoing; #planned};
+type DevelopmentUpdate__270611698 =
+  {
+    budget : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    photo : ?Blob;
+    status : DevelopmentStatus__829611004;
+    title : Text;
+    updatedAt : Int
+  };
+type DevelopmentUpdate__437544466 =
+  {
+    budget : Nat;
+    createdAt : Timestamp__341197993;
+    description : Text;
+    id : DevelopmentId__173362474;
+    photo : ?ExternalBlob__220559234;
+    status : DevelopmentStatus__799853551;
+    title : Text;
+    updatedAt : Timestamp__341197993
+  };
+type DevelopmentUpdate__74782701 =
+  {
+    budget : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    photo : ?Blob;
+    status : DevelopmentStatus__11287513;
+    title : Text;
+    updatedAt : Int
+  };
+type ExternalBlob__220559234 = Blob;
+type GeoLocation__251022003 = {latitude : Float; longitude : Float};
+type GeoLocation__303947797 = {latitude : Float; longitude : Float};
+type GeoLocation__693223039 = {latitude : Float; longitude : Float};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type List__355132335<T> =
+  {
+    var blockIndex : Nat__227979830;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__227979830
+  };
+type List__836382695<T> = List__355132335<T>;
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__416082931 =
+  {
+    accessControlState : AccessControlState__201339279;
+    developmentUpdates : Map__230067015<Nat, DevelopmentUpdate__270611698>;
+    problemState : {var nextProblemId : Nat; var nextResponseId : Nat};
+    problems : Map__230067015<Nat, Problem__115242845>;
+    responses :
+      Map__230067015<Nat, List__836382695<OfficialResponse__918585079>>;
+    statusHistory :
+      Map__230067015<Nat, List__836382695<StatusChange__370419278>>;
+    upvoters : Map__230067015<Nat, Map__230067015<Principal, Bool>>;
+    villageProfile : {var value : ?VillageProfile__764342107};
+    villageState : {var nextDevelopmentId : Nat}
+  };
+type NewActor__99086632 =
+  {
+    accessControlState : AccessControlState__201339279;
+    contactSettings : {var value : ?ContactSettings__186993079};
+    developmentUpdates : Map__230067015<Nat, DevelopmentUpdate__74782701>;
+    problemState : {var nextProblemId : Nat; var nextResponseId : Nat};
+    problems : Map__230067015<Nat, Problem__556268261>;
+    responses :
+      Map__230067015<Nat, List__836382695<OfficialResponse__825534417>>;
+    statusHistory :
+      Map__230067015<Nat, List__836382695<StatusChange__160365191>>;
+    upvoters : Map__230067015<Nat, Map__230067015<Principal, Bool>>;
+    villageProfile : {var value : ?VillageProfile__822338533};
+    villageState : {var nextDevelopmentId : Nat}
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OfficialResponse__825534417 =
+  {createdAt : Int; id : Nat; message : Text; problemId : Nat};
+type OfficialResponse__916871809 =
+  {
+    createdAt : Timestamp__327993551;
+    id : ResponseId__537169765;
+    message : Text;
+    problemId : ProblemId__214720724
+  };
+type OfficialResponse__918585079 =
+  {createdAt : Int; id : Nat; message : Text; problemId : Nat};
+type OldActor__927544402 = {};
+type OldActor__934428609 =
+  {
+    accessControlState : AccessControlState__201339279;
+    developmentUpdates : Map__230067015<Nat, DevelopmentUpdate__74782701>;
+    problemState : {var nextProblemId : Nat; var nextResponseId : Nat};
+    problems : Map__230067015<Nat, Problem__556268261>;
+    responses :
+      Map__230067015<Nat, List__836382695<OfficialResponse__825534417>>;
+    statusHistory :
+      Map__230067015<Nat, List__836382695<StatusChange__160365191>>;
+    upvoters : Map__230067015<Nat, Map__230067015<Principal, Bool>>;
+    villageProfile : {var value : ?VillageProfile__822338533};
+    villageState : {var nextDevelopmentId : Nat}
+  };
+type ProblemCategory__254668038 =
+  {#education; #electricity; #health; #other; #road; #sanitation; #water};
+type ProblemCategory__365263910 =
+  {#education; #electricity; #health; #other; #road; #sanitation; #water};
+type ProblemCategory__492754795 =
+  {#education; #electricity; #health; #other; #road; #sanitation; #water};
+type ProblemId__138183173 = Nat;
+type ProblemId__214720724 = ProblemId__138183173;
+type ProblemStatus__120311698 = {#inProgress; #new; #resolved};
+type ProblemStatus__243959847 = {#inProgress; #new; #resolved};
+type ProblemStatus__345065101 = {#inProgress; #new; #resolved};
+type Problem__115242845 =
+  {
+    category : ProblemCategory__492754795;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    location : ?GeoLocation__251022003;
+    photo : ?Blob;
+    reporterContact : ?Text;
+    reporterName : ?Text;
+    status : ProblemStatus__345065101;
+    title : Text;
+    updatedAt : Int;
+    upvotes : Nat
+  };
+type Problem__556268261 =
+  {
+    category : ProblemCategory__365263910;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    location : ?GeoLocation__303947797;
+    photo : ?Blob;
+    reporterContact : ?Text;
+    reporterName : ?Text;
+    status : ProblemStatus__120311698;
+    title : Text;
+    updatedAt : Int;
+    upvotes : Nat
+  };
+type Problem__959663783 =
+  {
+    category : ProblemCategory__254668038;
+    createdAt : Timestamp__327993551;
+    description : Text;
+    id : ProblemId__214720724;
+    location : ?GeoLocation__693223039;
+    photo : ?ExternalBlob__220559234;
+    reporterContact : ?Text;
+    reporterName : ?Text;
+    status : ProblemStatus__243959847;
+    title : Text;
+    updatedAt : Timestamp__327993551;
+    upvotes : Nat
+  };
+type ResponseId__537169765 = Nat;
+type StatusChange__1040335864 =
+  {
+    changedAt : Timestamp__327993551;
+    fromStatus : ProblemStatus__243959847;
+    toStatus : ProblemStatus__243959847
+  };
+type StatusChange__160365191 =
+  {
+    changedAt : Int;
+    fromStatus : ProblemStatus__120311698;
+    toStatus : ProblemStatus__120311698
+  };
+type StatusChange__370419278 =
+  {
+    changedAt : Int;
+    fromStatus : ProblemStatus__345065101;
+    toStatus : ProblemStatus__345065101
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__327993551 = Timestamp__301639476;
+type Timestamp__341197993 = Timestamp__301639476;
+type UserRole__91647283 = {#admin; #guest; #user};
+type VillageProfile__754416063 =
+  {
+    areaSqKm : Float;
+    facilities : [Text];
+    households : Nat;
+    name : Text;
+    population : Nat;
+    updatedAt : Timestamp__341197993
+  };
+type VillageProfile__764342107 =
+  {
+    areaSqKm : Float;
+    facilities : [Text];
+    households : Nat;
+    name : Text;
+    population : Nat;
+    updatedAt : Int
+  };
+type VillageProfile__822338533 =
+  {
+    areaSqKm : Float;
+    facilities : [Text];
+    households : Nat;
+    name : Text;
+    population : Nat;
+    updatedAt : Int
+  };
+{
+  "20261006_000000" : OldActor__927544402 -> NewActor__416082931;
+  "20261007_000000" : (old : OldActor__934428609) -> NewActor__99086632
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable contactSettings : {var value : ?ContactSettings__1013381992};
+  stable developmentUpdates :
+    {
+      var root :
+        Node__204828119<DevelopmentId__173362474,
+                         DevelopmentUpdate__437544466>;
+      var size : Nat__227979830
+    };
+  stable problemState : {var nextProblemId : Nat; var nextResponseId : Nat};
+  stable problems :
+    {
+      var root : Node__204828119<ProblemId__214720724, Problem__959663783>;
+      var size : Nat__227979830
+    };
+  stable responses :
+    {
+      var root :
+        Node__204828119<ProblemId__214720724,
+                         List__836382695<OfficialResponse__916871809>>;
+      var size : Nat__227979830
+    };
+  stable statusHistory :
+    {
+      var root :
+        Node__204828119<ProblemId__214720724,
+                         List__836382695<StatusChange__1040335864>>;
+      var size : Nat__227979830
+    };
+  stable upvoters :
+    {
+      var root :
+        Node__204828119<ProblemId__214720724, Map__230067015<Principal, Bool>>;
+      var size : Nat__227979830
+    };
+  stable villageProfile : {var value : ?VillageProfile__754416063};
+  stable villageState : {var nextDevelopmentId : Nat}
+};

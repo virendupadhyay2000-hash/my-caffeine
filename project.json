@@ -1,0 +1,20 @@
+{
+  "overview": "A bilingual village panchayat portal where villagers report problems, track development updates, and view village facts, with an admin console for managing content and public contact details.",
+  "features": [
+    "Report and browse village problems",
+    "Upvote problems and view official responses",
+    "Track development updates and budgets",
+    "View village profile and dashboard statistics",
+    "Admin console for problems, development, and village profile",
+    "Admin-editable public contact email and phone shown in the footer"
+  ],
+  "category": "community-portal",
+  "tags": [
+    "village",
+    "panchayat",
+    "community",
+    "civic",
+    "hindi"
+  ],
+  "last_updated": "2026-10-07T03:35:03.459Z"
+}
